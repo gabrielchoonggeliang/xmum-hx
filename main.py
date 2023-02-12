@@ -25,46 +25,61 @@ for i in sys.argv[1:]:
 for individual in Data:
     print(individual.name, individual.interests, individual.connections)
 
-while True:
-    print("What would you like to do?")
-    print("1. Add a person")
-    print("2. Add an interest")
-    print("3. Add a connection")
-    print("4. Remove a person")
-    print("5. Remove an interest")
-    print("6. Remove a connection")
-    print("7. View the database")
-    print("8. Exit")
-    choice = input("Enter your choice: ")
-    if choice == "1":
-        name = input("Enter the name of the person: ")
-        Data.append(Person(name))
-    elif choice == "2":
-        name = input("Enter the name of the person: ")
-        interest = input("Enter the interest of the person: ")
-        Data[sys.argv[1:].index(name)].add_interest(interest)
-    elif choice == "3":
-        name = input("Enter the name of the person: ")
-        connection = input("Enter the connection of the person: ")
-        Data[sys.argv[1:].index(name)].add_connection(connection)
-    elif choice == "4":
-        name = input("Enter the name of the person: ")
-        Data.remove(Data[sys.argv[1:].index(name)])
-    elif choice == "5":
-        name = input("Enter the name of the person: ")
-        interest = input("Enter the interest of the person: ")
-        Data[sys.argv[1:].index(name)].remove_interest(interest)
-    elif choice == "6":
-        name = input("Enter the name of the person: ")
-        connection = input("Enter the connection of the person: ")
-        Data[sys.argv[1:].index(name)].remove_connection(connection)
-    elif choice == "7":
-        for individual in Data:
-            print(individual.name, individual.interests, individual.connections)
-    elif choice == "8":
+def admin():
+    while True:
+        print("What would you like to do?")
+        print("1. Add a person")
+        print("2. Add an interest")
+        print("3. Add a connection")
+        print("4. Remove a person")
+        print("5. Remove an interest")
+        print("6. Remove a connection")
+        print("7. View the database")
+        print("8. Exit")
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            name = input("Enter the name of the person: ")
+            Data.append(Person(name))
+        elif choice == "2":
+            name = input("Enter the name of the person: ")
+            interest = input("Enter the interest of the person: ")
+            Data[sys.argv[1:].index(name)].add_interest(interest)
+        elif choice == "3":
+            name = input("Enter the name of the person: ")
+            connection = input("Enter the connection of the person: ")
+            Data[sys.argv[1:].index(name)].add_connection(connection)
+        elif choice == "4":
+            name = input("Enter the name of the person: ")
+            Data.remove(Data[sys.argv[1:].index(name)])
+        elif choice == "5":
+            name = input("Enter the name of the person: ")
+            interest = input("Enter the interest of the person: ")
+            Data[sys.argv[1:].index(name)].remove_interest(interest)
+        elif choice == "6":
+            name = input("Enter the name of the person: ")
+            connection = input("Enter the connection of the person: ")
+            Data[sys.argv[1:].index(name)].remove_connection(connection)
+        elif choice == "7":
+            for individual in Data:
+                print(individual.name, individual.interests, individual.connections)
+        elif choice == "8":
+            break
+        else:
+            print("Invalid choice")
+
+# user authentication
+for i in range(3):
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+    if username == "admin" and password == "admin":
+        print("Welcome, admin!")
+        admin()
         break
     else:
-        print("Invalid choice")
+        print("Invalid username or password")
+        if i == 2:
+            print("You have exceeded the maximum number of attempts")
+            exit()
 
 # view final database
 for individual in Data:
